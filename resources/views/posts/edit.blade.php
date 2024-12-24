@@ -15,14 +15,14 @@
                        @method('PUT')
                         @csrf
                         <div class=" control-group mb-4">
-                            <input type="text" class="form-control p-4" name="title" id="title" value="{{$post->title}}" placeholder="Title"/>
+                            <input type="text" class="form-control p-4" name="title"  value="{{$post->title}}" placeholder="Title"/>
                                 @error('title')
                                 <p class="help-block text-danger">{{ $message }}</p>
                              
                             @enderror
                         </div>
                         <div class=" control-group mb-4">
-                            <input type="file" class="form-control p-4" name="photo" id="title"  placeholder="photo"/>
+                            <input type="file" class="form-control p-4" name="photo"   placeholder="photo"/>
                                  @error('photo')
                                  <p class="help-block text-danger">{{ $message }}</p>
                               
@@ -30,8 +30,7 @@
                                 
                         </div>
                         <div class="control-group mb-4">
-                            <input type="text" class="form-control p-4" name="short_content" value="{{$post->short_content}}" placeholder="short_content"
-                                 data-validation-required-message="Please enter a subject" />
+                            <input type="text" class="form-control p-4" name="short_content" placeholder="short_content" />
                             @error('short_content')
                                 <p class="help-block text-danger">{{ $message }}</p>
                              

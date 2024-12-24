@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -90,18 +91,21 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         if ($request->hasFile('photo')) {
+            if(isset($post->photo)){
+                Storage::delete($post->photo);
+            }
 
             $name = $request->file('photo')->getClientOriginalName();
             $path = $request->file('photo')->storeAs('post-photos', $name);
         }
-        $posts = Post::updated([
-            'title' => $post->title,
-            'short_content' => $post->short_content,
-            'content' => $post->content,
+        $post->update([
+            'title' => $request->title,
+            'short_content' => $request->short_content,
+            'content' => $request->content,
             'photo' => $path ?? null,
         ]);
 
-        return redirect(route('posts.index'));
+        return redirect(route('posts.show',['post'=>$post->id]));
     }
 
     /**
@@ -110,8 +114,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+     $post->delete();
+     return redirect(route('posts.index'));
     }
 }

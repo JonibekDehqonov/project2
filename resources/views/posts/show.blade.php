@@ -19,7 +19,12 @@
                                 <div class="d-inline-flex align-items-center">
                                     <a class="btn btn-sm btn-outline-dark" href="{{route('posts.edit',['post'=>$post->id])}} ">Update</a>
                                     <i class="fas fa-angle-double-right text-light mx-2"></i>
-                                    <a class="btn btn-sm btn-outline-danger" href=" {{route('posts.destroy',['post'=>$post->id])}} ">Delete</a>
+                                    <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
+                                        @csrf
+                                        @method(Delete);
+                                    <button class="btn btn-sm btn-outline-danger" >Delete</button>
+
+                                    </form>
                                 </div>
                             </div>
                             <a class="text-secondary text-uppercase font-weight-medium"
