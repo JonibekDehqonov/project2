@@ -142,51 +142,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="img/blog-2.jpg"
-                                style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum
-                                    dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="img/blog-3.jpg"
-                                style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum
-                                    dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="img/blog-1.jpg"
-                                style="width: 80px; height: 80px; object-fit: cover;" alt="">
-                            <div class="d-flex flex-column pl-3">
-                                <a class="text-dark mb-2" href="">Elitr diam amet sit elitr magna ipsum ipsum
-                                    dolor</a>
-                                <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Admin</a></small>
-                                    <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Cleaning</a></small>
-                                </div>
-                            </div>
-                        </div>
+                       @foreach ( as )
+                           
+                       @endforeach
                         <div class="d-flex align-items-center">
                             <img class="img-fluid rounded" src="img/blog-2.jpg"
                                 style="width: 80px; height: 80px; object-fit: cover;" alt="">
