@@ -19,9 +19,9 @@
                                 <div class="d-inline-flex align-items-center">
                                     <a class="btn btn-sm btn-outline-dark" href="{{route('posts.edit',['post'=>$post->id])}} ">Update</a>
                                     <i class="fas fa-angle-double-right text-light mx-2"></i>
-                                    <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
+                                    <form action="{{ route('posts.destroy',['post'=>$post->id])}}" method="POST">
                                         @csrf
-                                        @method(Delete);
+                                        @method('DELETE');
                                     <button class="btn btn-sm btn-outline-danger" >Delete</button>
 
                                     </form>

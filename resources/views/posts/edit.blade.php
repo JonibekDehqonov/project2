@@ -30,7 +30,7 @@
                                 
                         </div>
                         <div class="control-group mb-4">
-                            <input type="text" class="form-control p-4" name="short_content" placeholder="short_content" />
+                            <input type="text" class="form-control p-4" value="{{$post->title}}" name="short_content" placeholder="short_content" />
                             @error('short_content')
                                 <p class="help-block text-danger">{{ $message }}</p>
                              
