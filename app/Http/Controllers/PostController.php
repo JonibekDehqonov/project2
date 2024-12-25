@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::paginate(1);
+        $posts = Post::paginate(9);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -65,7 +65,8 @@ class PostController extends Controller
     {
         return view('posts.show')->with(
             [
-                'post' => $post
+                'post' => $post,
+                'recent_posts'=>Post::latest()->get()->except($post->id)->take(5)
             ]
         );
     }
