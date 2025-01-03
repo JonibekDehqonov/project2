@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
+
     use HasFactory;
+
+    protected $fillable=
+    [
+        'body',
+        'post_id',
+        'user_id',
+    ];
 
     public function post()
     {
