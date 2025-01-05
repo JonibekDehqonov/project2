@@ -30,6 +30,9 @@
                             <a class="text-secondary text-uppercase font-weight-medium"
                                 href="">{{ $post->creates }}</a>
                         </div>
+                            <div class='d-flex mb-2'>
+
+                                </div>
                         <h1 class="section-title mb-3">{{ $post->title }}</h1>
                     </div>
 
@@ -41,7 +44,7 @@
                     <div class="mb-5">
                         <h3 class="mb-4 section-title">{{$post->comments()->count()}} Comments</h3>
                         @foreach ( $post->comments as $comment )
-                            
+
                         <div class="media mb-4">
                             <img src="/img/user.jpg" alt="Image" class="img-fluid rounded-circle mr-3 mt-1"
                             style="width: 45px;">
@@ -52,7 +55,7 @@
                                 </div>
                             </div>
                             @endforeach
-                        
+
                     </div>
 
                     <div class="bg-light rounded p-5">
@@ -71,7 +74,7 @@
                             <label for="website">Website</label>
                             <input type="url" class="form-control" id="website">
                         </div> --}}
-                        
+
                         <form action="{{  route('comments.store') }}" method="POST">
                             @csrf
                         <div class="form-group">
@@ -105,6 +108,31 @@
                         </div>
                     </div>
                     <div class="mb-5">
+                        <h3 class="mb-4 section-title">Categories</h3>
+                        <ul class="list-inline m-0">
+                            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Web Design</a>
+                                <span class="badge badge-primary badge-pill">150</span>
+                            </li>
+                            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Web Development</a>
+                                <span class="badge badge-primary badge-pill">131</span>
+                            </li>
+                            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Online Marketing</a>
+                                <span class="badge badge-primary badge-pill">78</span>
+                            </li>
+                            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Keyword Research</a>
+                                <span class="badge badge-primary badge-pill">56</span>
+                            </li>
+                            <li class="py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                                <a class="text-dark" href="#"><i class="fa fa-angle-right text-secondary mr-2"></i>Email Marketing</a>
+                                <span class="badge badge-primary badge-pill">98</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-5">
                         <img src="img/blog-1.jpg" alt="" class="img-fluid rounded">
                     </div>
                     <div class="mb-5">
@@ -116,16 +144,16 @@
                             <div class="d-flex flex-column pl-3">
                                 <a class="text-dark mb-2" href="">{{$post->titlle}} </a>
                                 <div class="d-flex">
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
+                                   <small><a class="text-secondary text-uppercase font-weight-medium"
                                             href="">Admin</a></small>
                                     <small class="text-primary px-2">|</small>
-                                    <small><a class="text-secondary text-uppercase font-weight-medium"
-                                            href="">Cleaning</a></small>
+                                   <small><a class="text-secondary text-uppercase font-weight-medium"
+                                           href="">Cleaning</a></small>
                                 </div>
                             </div>
                         </div>
-                           
-                       
+
+
                        @endforeach
                     </div>
                     <div class="mb-5">

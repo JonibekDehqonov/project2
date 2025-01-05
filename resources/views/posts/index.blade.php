@@ -32,6 +32,7 @@
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
                             <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
+                            <a class='text-danger text-uppercase font-width-medium'>{{$post->categories->name}}</a>
                         </div>
                         <h5 class="font-weight-medium mb-2">{{ $post->title }}</h5>
                         <p class="mb-4">{{ $post->short_content }}</p>
