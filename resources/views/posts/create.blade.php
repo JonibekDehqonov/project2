@@ -12,10 +12,7 @@
                     @csrf
                     <div class=" control-group mb-4">
                         <input type="text" class="form-control p-4" name="title" id="title" value="{{old('title')}}" placeholder="Title"/>
-                            @error('title')
-                            <p class="help-block text-danger">{{ $message }}</p>
-
-                        @enderror
+                          
                     </div>
 
                     <div class=" control-group mb-4">
