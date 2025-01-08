@@ -14,10 +14,15 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-       Tag::create(['name'=> 'Web Design']);
-       Tag::create(['name'=> 'Web Development']);
-       Tag::create(['name'=> 'Online Marketing']);
-       Tag::create(['name'=> 'Keyword Research']);
-       Tag::create(['name'=> 'Email Marketing']);
+       $tags=[
+        ['name'=>'Desing'],
+        ['name'=>'Marketing'],
+        ['name'=>'SEO'],
+        ['name'=>'Writing'],
+        ['name'=>'Consulting'],
+        ['name'=>'Development'],
+        ['name'=>'Reading'],
+       ];
+       Tag::insert($tags);
     }
 }
