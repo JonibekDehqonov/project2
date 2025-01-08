@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -32,7 +33,8 @@ class PostController extends Controller
     {
 
         return view('posts.create')->with([
-        'categories'=> Category::all(),
+            'categories' => Category::all(),
+            'tags' => Tag::all(),
         ]);
     }
 
@@ -44,20 +46,26 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+       
         if ($request->hasFile('photo')) {
 
             $name = $request->file('photo')->getClientOriginalName();
             $path = $request->file('photo')->storeAs('post-photos', $name);
         }
-        $posts = Post::create([
-            'user_id'=>1,
-            'category_id'=>$request->category_id,
+        $post = Post::create([
+            'user_id' => 1,
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'short_content' => $request->short_content,
             'content' => $request->content,
             'photo' => $path ?? null,
         ]);
 
+        if (isset($request->tags)) {
+            foreach ($request->tags as $tag) {
+                $post->tags()->attach($tag);
+            }
+        }
         return redirect(route('posts.index'));
     }
 
@@ -72,20 +80,22 @@ class PostController extends Controller
         return view('posts.show')->with(
             [
                 'post' => $post,
-                'recent_posts'=>Post::latest()->get()->except($post->id)->take(5)
+                'recent_posts' => Post::latest()->get()->except($post->id)->take(5),
+                'categories' => Category::all(),
+                'tags' => Tag::all()
             ]
         );
     }
 
     /**
-     * Show the form for editing the specified resource.
+    
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
     {
-        return view('posts.edit')->with(['post'=> $post]);
+        return view('posts.edit')->with(['post' => $post]);
     }
 
     /**
@@ -98,7 +108,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         if ($request->hasFile('photo')) {
-            if(isset($post->photo)){
+            if (isset($post->photo)) {
                 Storage::delete($post->photo);
             }
 
@@ -112,18 +122,18 @@ class PostController extends Controller
             'photo' => $path ?? null,
         ]);
 
-        return redirect(route('posts.show',['post'=>$post->id]));
+        return redirect(route('posts.show', ['post' => $post->id]));
     }
 
     /**
-     * Remove the specified resource from storage.
+   
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
     {
-     $post->delete();
-     return redirect(route('posts.index'));
+        $post->delete();
+        return redirect(route('posts.index'));
     }
 }

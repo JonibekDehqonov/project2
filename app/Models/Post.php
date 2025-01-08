@@ -31,9 +31,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function pos()
+    public function tags()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Tag::class);
     }
 
 }
