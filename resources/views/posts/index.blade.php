@@ -32,7 +32,14 @@
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
                             <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
+<<<<<<< HEAD
                             <a class='text-danger text-uppercase font-width-medium'>{{dd($post->categories)}}</a>
+=======
+                         
+                        </div>
+                        <div class="d-flex mb-2">
+                            <a class='text-danger text-uppercase font-width-medium'>{{ $post->category->name }}</a>
+>>>>>>> 785690e772c5952a155b90c8a3a74c99e4f20a3b
                         </div>
                         <h5 class="font-weight-medium mb-2">{{ $post->title }}</h5>
                         <p class="mb-4">{{ $post->short_content }}</p>

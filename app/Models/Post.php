@@ -27,10 +27,14 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    
+    public function pos()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+
 }
 
