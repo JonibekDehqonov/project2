@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -28,3 +29,8 @@ Route::resources([
 
 
 ]);
+
+Route::get('login',[AuthController::class, 'login'])->name('login');
+Route::get('registor',[AuthController::class, 'registor'])->name('registor');
+Route::post('authenticate',[AuthController::class, 'authenticate'])->name('authenticate');
+Route::post('logout',[AuthController::class, 'logout'])->name('logout');
