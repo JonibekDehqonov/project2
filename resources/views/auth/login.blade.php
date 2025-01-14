@@ -12,7 +12,7 @@
                             @csrf
                             <div class="form-group py-2">
                                 <div class="input-field"> <span class="far fa-user p-2"></span> <input name="email" type="text"
-                                    placeholder="Username or Email" required> </div>
+                                    placeholder="Email" required> </div>
                                 </div>
                                 <div class="form-group py-1 pb-2">
                                     <div class="input-field"> <span class="fas fa-lock px-2"></span> <input name="password" type="password"
@@ -24,7 +24,7 @@
                                     for="remember" class="text-muted">Remember me</label> <a href="#"
                                     id="forgot" class="font-weight-bold">Forgot password?</a> </div>
                                     <button  type="submit" class="btn btn-primary btn-block mt-3">Login</button >
-                                    <div class="text-center pt-4 text-muted">Don't have an account? <a href="{{ route('registor') }}">Sign
+                                    <div class="text-center pt-4 text-muted">Don't have an account? <a href="{{ route('register') }}">Sign
                                         up</a> </div>
                                     </form>
                                 </div>

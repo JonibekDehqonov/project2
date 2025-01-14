@@ -31,6 +31,8 @@ Route::resources([
 ]);
 
 Route::get('login',[AuthController::class, 'login'])->name('login');
-Route::get('registor',[AuthController::class, 'registor'])->name('registor');
+Route::get('register',[AuthController::class, 'register'])->name('register');
+Route::post('register',[AuthController::class, 'register_store'])->name('register.store');
 Route::post('authenticate',[AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('logout',[AuthController::class, 'logout'])->name('logout');
+Route::post('app',[AuthController::class,'app'])->name('app');
