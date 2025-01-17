@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -61,7 +62,7 @@ class PostController extends Controller
             $path = $request->file('photo')->storeAs('post-photos', $name);
         }
         $post = Post::create([
-            'user_id' => 1,
+            'user_id' => Auth()->id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'short_content' => $request->short_content,
