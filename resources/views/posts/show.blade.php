@@ -11,18 +11,19 @@
                 <div class="col-lg-8">
                     <div class="col-md-6 text-center text-md-right">
                         @auth
-                            
-                        <div class="d-inline-flex align-items-center">
-                            <a class="btn btn-sm btn-outline-dark" href="{{route('posts.edit',['post'=>$post->id])}} ">Update</a>
-                            <i class="fas fa-angle-double-right text-light mx-2"></i>
-                            <form action="{{ route('posts.destroy',['post'=>$post->id])}}" method="POST">
-                                @csrf
-                                @method('DELETE');
-                                <button class="btn btn-sm btn-outline-danger" >Delete</button>
-                                
-                            </form>
-                        </div>
-                        @endauth
+                            @canany(['update', 'delete'], $post); 
+                            <div class="d-inline-flex align-items-center">
+                                <a class="btn btn-sm btn-outline-dark" href="{{route('posts.edit',['post'=>$post->id])}} ">Update</a>
+                                <i class="fas fa-angle-double-right text-light mx-2"></i>
+                                <form action="{{ route('posts.destroy',['post'=>$post->id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE');
+                                    <button class="btn btn-sm btn-outline-danger" >Delete</button>
+                                    
+                                </form>
+                            </div>
+                            @endcanany
+                            @endauth
                     </div>
                     <div class="mb-5">
 
@@ -50,13 +51,13 @@
 
                     <div class="mb-5">
                         <h3 class="mb-4 section-title">{{$post->comments()->count()}} Comments</h3>
-                        @foreach ( $post->comments as $comment )
+                         @foreach ( $post->comments as $comment )
 
                         <div class="media mb-4">
                             <img src="/img/user.jpg" alt="Image" class="img-fluid rounded-circle mr-3 mt-1"
                             style="width: 45px;">
                             <div class="media-body">
-                                <h6>{{$post->user->name}} <small><i>{{ $comment->created_at}}</i></small></h6>
+                                <h6>{{Auth()->user()->name}} <small><i>{{ $comment->created_at}}</i></small></h6>
                                 <p>{{$comment->body}}</p>
                                     {{-- <button class="btn btn-sm btn-light">Reply</button> --}}
                                 </div>
