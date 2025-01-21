@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\PostCreated;
 
 class PostController extends Controller
 {
@@ -74,6 +75,7 @@ class PostController extends Controller
                 $post->tags()->attach($tag);
             }
         }
+        auth()->user()->notify(new PostCreated($post));
         return redirect(route('posts.index'));
     }
 

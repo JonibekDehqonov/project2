@@ -51,7 +51,7 @@ class AuthController extends Controller
             'name'=>'required',
             'email'=>'required|email:rfc,dns|unique:users,email',
             'password'=>'required|min:4|confirmed',
-            // 'password_confirmation'=>'required|same:password',
+            
         ]);
         $validated['password']=Hash::make($validated['password']);
     
