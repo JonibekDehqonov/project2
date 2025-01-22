@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreated;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\PostCreated;
 
@@ -21,6 +24,7 @@ class PostController extends Controller
     public function __construct()
     {
        $this->middleware('auth')->except(['index','show']);  
+       
     }
         
     
@@ -62,7 +66,7 @@ class PostController extends Controller
             $path = $request->file('photo')->storeAs('post-photos', $name);
         }
         $post = Post::create([
-            'user_id' => 1,
+            'user_id' => Auth()->id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'short_content' => $request->short_content,
@@ -75,7 +79,6 @@ class PostController extends Controller
                 $post->tags()->attach($tag);
             }
         }
-        auth()->user()->notify(new PostCreated($post));
         return redirect(route('posts.index'));
     }
 
@@ -105,6 +108,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update');
+       
         return view('posts.edit')->with(['post' => $post]);
     }
 
@@ -117,6 +122,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update');
         if ($request->hasFile('photo')) {
             if (isset($post->photo)) {
                 Storage::delete($post->photo);
@@ -143,6 +149,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+    $this->authorize('delete');
+        
         $post->delete();
         return redirect(route('posts.index'));
     }

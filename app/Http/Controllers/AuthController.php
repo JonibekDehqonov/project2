@@ -46,12 +46,17 @@ class AuthController extends Controller
     }
 
     public function register_store(Request $request ){
-  
-       $validated= $request->validate([
+        $validated= $request->validate([
             'name'=>'required',
+<<<<<<< HEAD
             'email'=>'required|email:rfc,dns|unique:users,email',
             'password'=>'required|min:4|confirmed',
             
+=======
+            'email'=>'required|email',
+            'password'=>'required|confirmed',
+            // 'password_confirmation'=>'required|same:password',
+>>>>>>> ea2813e233bc1bbb48ade5240f4c408f2350132c
         ]);
         $validated['password']=Hash::make($validated['password']);
     

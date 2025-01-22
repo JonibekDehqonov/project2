@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -12,7 +13,7 @@ class CommentController extends Controller
         $Comments= Comment::create([
             'body'=> $request->body,
             'post_id'=>$request->post_id,
-            'user_id'=>1,
+            'user_id'=>Auth()->id(),
         ]);
         return redirect()->back();
     }
