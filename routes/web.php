@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,4 @@ Route::post('register',[AuthController::class, 'register_store'])->name('registe
 Route::post('authenticate',[AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('logout',[AuthController::class, 'logout'])->name('logout');
 Route::post('app',[AuthController::class,'app'])->name('app');
+Route::get('notification',[NotificationController::class, 'index']);

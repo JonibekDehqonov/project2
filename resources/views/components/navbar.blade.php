@@ -15,8 +15,7 @@
             <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
         </div>
         @auth
-<<<<<<< HEAD
-            <a href="" class="btn btn-primary mr-5">
+            <a href="{{ route('') }}" class="btn btn-primary mr-5">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
@@ -31,17 +30,6 @@
                 @csrf
                 <button class="btn btn-dark mr-3 d-none d-lg-block">Sing up</button>
             </form>
-=======
-        <div>
-            {{Auth()->user()->name}}
-        </div> 
-        <a href="{{route('posts.create')}}" class="btn btn-primary mr-3 d-none d-lg-block">Add blog</a>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-           
-            <button class="btn btn-dark mr-3 d-none d-lg-block" >Sing up</button>
-        </form>
->>>>>>> ea2813e233bc1bbb48ade5240f4c408f2350132c
         @else
             <a href="{{ route('login') }} " class="btn btn-primary mr-3 d-none d-lg-block">Sing in</a>
         @endauth

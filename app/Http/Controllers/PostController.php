@@ -9,10 +9,12 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Models\Tag;
+use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\PostCreated;
+use Illuminate\Support\Facades\Notification;    
+   
 
 class PostController extends Controller
 {
@@ -79,6 +81,9 @@ class PostController extends Controller
                 $post->tags()->attach($tag);
             }
         }
+        PostCreated::dispatch($post);
+        
+        $post->notify(new NotificationsPostCreated($post));
         return redirect(route('posts.index'));
     }
 

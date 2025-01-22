@@ -2,10 +2,6 @@
     <x-slot name="title">
         Notification
     </x-slot>
-    <x-Page-Header>
-        Notification
-    </x-Page-Header>
-
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row align-items-end mb-4">
