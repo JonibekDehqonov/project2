@@ -83,7 +83,7 @@ class PostController extends Controller
         }
         PostCreated::dispatch($post);
         
-        $post->notify(new NotificationsPostCreated($post));
+        Auth()->user()->notify(new NotificationsPostCreated($post));
         return redirect(route('posts.index'));
     }
 

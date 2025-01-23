@@ -37,4 +37,5 @@ Route::post('register',[AuthController::class, 'register_store'])->name('registe
 Route::post('authenticate',[AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('logout',[AuthController::class, 'logout'])->name('logout');
 Route::post('app',[AuthController::class,'app'])->name('app');
-Route::get('notification',[NotificationController::class, 'index']);
+Route::resource('notifications', NotificationController::class);
+// Route::get('notification',[NotificationController::class, 'index'])->name('notification ');

@@ -12,7 +12,7 @@
             </div>
 
             @foreach ($notifications as $notification)
-                <div class="col-lg-4 col-md-6 mb-5">
+            
                     <div class="position-relative mb-4">
                         <div class="blog-date">
                             <h4 class="font-weight-bold mb-n1">New</h4>
@@ -22,18 +22,18 @@
                         <a class="text-secondary text-uppercase font-weight-medium">{{ $notification->data['created_at'] }}</a>
                     </div>
                     <div class="d-flex mb-2">
-                        <a class='text-danger text-uppercase font-width-medium'>{{ $post->category->name }}</a>
+                        <a class='text-danger text-uppercase font-width-medium'>{{ 'a' }}</a>
 
                     </div>
                     <h5 class="font-weight-medium mb-2">{{ $notification->data['title'] }}</h5>
                     <p class="mb-4">{{'id'.$notification->data['id']}}</p>
                     <a class="btn btn-sm btn-primary py-2" href="{{ 'a'}}">Read
                         More</a>
-                </div>
+             
             @endforeach
 
             <div class="col-12">
-                {{ $posts->links() }}
+                {{ $notifications->links() }}
             </div>
         </div>
     </div>
