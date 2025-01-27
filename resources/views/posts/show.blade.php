@@ -11,7 +11,7 @@
                 <div class="col-lg-8">
                     <div class="col-md-6 text-center text-md-right">
                         @auth
-                            @canany(['update', 'delete'], $post); 
+                           
                             <div class="d-inline-flex align-items-center">
                                 <a class="btn btn-sm btn-outline-dark" href="{{route('posts.edit',['post'=>$post->id])}} ">Update</a>
                                 <i class="fas fa-angle-double-right text-light mx-2"></i>
@@ -22,7 +22,7 @@
                                     
                                 </form>
                             </div>
-                            @endcanany
+                          
                             @endauth
                     </div>
                     <div class="mb-5">

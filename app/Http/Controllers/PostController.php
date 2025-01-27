@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Tag;
 use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;    
@@ -34,8 +35,14 @@ class PostController extends Controller
     public function index()
     {
 
-
-        $posts = Post::paginate(9);
+            // Cache::pull('posts');
+            // $posts=Post::latest()->get();
+        // $posts = Post::latest()->paginate(9);
+        $posts= Cache::remember('posts', now()->addSeconds(60), function () {
+            return Post::latest()->get();
+             
+        });
+        
         return view('posts.index')->with('posts', $posts);
     }
 

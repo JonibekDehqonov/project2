@@ -23,6 +23,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="carousel-item">
                     <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
                     <div class="carousel-caption d-flex align-items-center justify-content-center">
