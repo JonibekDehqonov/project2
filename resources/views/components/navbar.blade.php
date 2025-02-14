@@ -7,13 +7,17 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav mr-auto py-0">
-            <a href="/" class="nav-item nav-link ">Home</a>
-            <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
-            <a href="{{ route('service') }}" class="nav-item nav-link">Service</a>
-            <a href="{{ route('project') }}" class="nav-item nav-link">Project</a>
-            <a href="{{ route('posts.index') }}" class="nav-item nav-link">Blog</a>
-            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+            <a href="/" class="nav-item nav-link ">{{__('Home')}}</a>
+            <a href="{{ route('about') }}" class="nav-item nav-link">{{__('About')}}</a>
+            <a href="{{ route('service') }}" class="nav-item nav-link">{{__('Service')}}</a>
+            <a href="{{ route('project') }}" class="nav-item nav-link">{{__('Project')}}</a>
+            <a href="{{ route('posts.index') }}" class="nav-item nav-link">{{__('Blog')}}</a>
+            <a href="{{ route('contact') }}" class="nav-item nav-link">{{__('Contact')}}</a>
         </div>
+        
+        @foreach ($all_locales as  $locale)
+            <a href="{{route('locale.change',['locale'=>$locale])}}"class="btn btn-primary mr-3 d-none d-lg-block">{{$locale}}</a>
+        @endforeach
         @auth
             <a href="{{ route('notifications.index') }}" class="btn btn-primary mr-5">
 
@@ -25,13 +29,13 @@
                 <span class="badge badge-light">{{ auth()->user()->notifications()->count() }}</span> 
             </a>
             <div>{{ auth()->user()->name }}</div>
-            <a href="{{ route('posts.create') }}" class="btn btn-primary mr-3 d-none d-lg-block">Add blog</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-primary mr-3 d-none d-lg-block">{{__('Add blog')}}</a>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                <button class="btn btn-dark mr-3 d-none d-lg-block">Sing up</button>
+                <button class="btn btn-dark mr-3 d-none d-lg-block">{{__('Sing up')}}</button>
             </form>
         @else
-            <a href="{{ route('login') }} " class="btn btn-primary mr-3 d-none d-lg-block">Sing in</a>
+            <a href="{{ route('login') }} " class="btn btn-primary mr-3 d-none d-lg-block">{{__('Sing in')}}</a>
         @endauth
     </div>
 </nav>

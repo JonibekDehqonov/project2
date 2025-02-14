@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-   
+    
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -48,7 +48,7 @@ class AuthController extends Controller
     public function register_store(Request $request ){
         $validated= $request->validate([
             'name'=>'required',
-            'email'=>'required|email:rfc,dns|unique:users,email',
+            'email'=>'required',
             'password'=>'required|min:4|confirmed',
             
         ]);
