@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
+use App\Models\Role;
 use App\Models\Tag;
 use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Support\Facades\Auth;
@@ -37,11 +38,11 @@ class PostController extends Controller
 
             // Cache::pull('posts');
             // $posts=Post::latest()->get();
-        // $posts = Post::latest()->paginate(9);
-        $posts= Cache::remember('posts', now()->addSeconds(60), function () {
-            return Post::latest()->get();
+        $posts = Post::latest()->paginate(9);
+        // $posts= Cache::remember('posts', now()->addSeconds(60), function () {
+        //     return Post::latest()->get();
              
-        });
+        // });
         
         return view('posts.index')->with('posts', $posts);
     }
@@ -53,7 +54,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        Gate::authorize('create-post', Role::find(1));
         return view('posts.create')->with([
             'categories' => Category::all(),
             'tags' => Tag::all(),
@@ -91,8 +92,8 @@ class PostController extends Controller
         PostCreated::dispatch($post);
         
         Auth()->user()->notify(new NotificationsPostCreated($post));
-        return redirect(route('posts.index'));
-    }
+        return redirect()->route('posts.index')->with('success', 'post created');
+        }
 
     /**
      * Display the specified resource.
@@ -120,7 +121,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $this->authorize('update');
+        // $this->authorize('update');
        
         return view('posts.edit')->with(['post' => $post]);
     }
@@ -134,7 +135,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $this->authorize('update');
+        // $this->authorize('update');
         if ($request->hasFile('photo')) {
             if (isset($post->photo)) {
                 Storage::delete($post->photo);
@@ -150,7 +151,7 @@ class PostController extends Controller
             'photo' => $path ?? null,
         ]);
 
-        return redirect(route('posts.show', ['post' => $post->id]));
+        return redirect()->route('posts.show', ['post' => $post->id])->with('success', 'post updated');
     }
 
     /**
@@ -161,9 +162,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-    $this->authorize('delete');
+    // $this->authorize('delete');
         
         $post->delete();
-        return redirect(route('posts.index'));
+        return redirect()->route('posts.index')->with('success', 'post delete');
     }
 }

@@ -56,6 +56,7 @@ class AuthController extends Controller
     
         $user = User::create($validated);
         auth()->login($user);
+        $user->roles()->attach(3);
         return redirect('/')->with('success',"Accaunt successfully registered ");
     }
     public function logout(Request $request)

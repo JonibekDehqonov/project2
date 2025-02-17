@@ -7,6 +7,8 @@
     <!-- Detail Start -->
     <div class="container-fluid py-5">
         <div class="container">
+            <x-session_status.status>
+            </x-session_status.status>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="col-md-6 text-center text-md-right">

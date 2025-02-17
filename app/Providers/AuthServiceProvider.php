@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -15,9 +16,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
-    protected $policies = [
-        Post::class => PostPolicy::class,
-    ];
+    // protected $policies = [
+    //     Post::class => PostPolicy::class,
+    // ];
 
     /**
      * Register any authentication / authorization services.
@@ -26,8 +27,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
 
+        $this->registerPolicies();
+        Gate::define('create-post', function (User $user, Role $role){
+            return $user->hasRole($role->name);
+        });
       
       
       
